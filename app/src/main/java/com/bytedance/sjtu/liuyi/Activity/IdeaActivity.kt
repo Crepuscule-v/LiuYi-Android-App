@@ -10,30 +10,27 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bytedance.sjtu.liuyi.Adapter.IdeaViewAdapter
-import com.bytedance.sjtu.liuyi.DataClass.IdeaItem
-import com.bytedance.sjtu.liuyi.IdeaItemDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.IdeaItemDBHelper
 import com.bytedance.sjtu.liuyi.R
 import com.bytedance.sjtu.liuyi.databinding.ActivityScrollingBinding
 import java.util.*
 
 class IdeaActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityScrollingBinding
-    private lateinit var rvAdapter : IdeaViewAdapter
+    lateinit var rvAdapter : IdeaViewAdapter
     private lateinit var rvIdea: RecyclerView
-    private lateinit var dateStr : String
+    lateinit var dateStr : String
     private lateinit var floatingCreationButton : com.google.android.material.floatingactionbutton.FloatingActionButton
-    private val dbHelper = IdeaItemDBHelper(this, "idea.db", 1)
+    private val dbHelper = IdeaItemDBHelper(this, IDEA_DB_NAME, 1)
     private var db : SQLiteDatabase? = null
-    private var databaseTestItem : Boolean = false
-    private var bundleTestItem : Boolean = false
+    private lateinit var all_idea_toolbar : androidx.appcompat.widget.Toolbar
+
     private val ideaItemRequestLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         when (it.resultCode) {
             IdeaItemCreationActivity.IdeaItemCreationSuccessCode -> {
@@ -46,29 +43,40 @@ class IdeaActivity : AppCompatActivity() {
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setBundleTestItem(false)    // if set true, default date bundle will be set for the database filter.
-//        inflateTestDateBundle()
         dateStr = intent.getStringExtra("task_date").toString()
-//        setEnvironmentParameter()
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        binding.toolbarLayout.title = title
+        bindView()
+        initBarView()
+        setClickListener()
+        bindDatabase()
+        initRecyclerView()
+    }
+
+    private fun bindView() {
+        all_idea_toolbar = findViewById(R.id.all_idea_toolbar)
+        floatingCreationButton = findViewById(R.id.fab)
+    }
+
+    private fun setClickListener () {
+        // 设置顶部按钮栏
+        setSupportActionBar(all_idea_toolbar)
+        all_idea_toolbar.setTitle("百草园")
+        all_idea_toolbar.setNavigationIcon(R.drawable.to_left)
+        setSupportActionBar(all_idea_toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        all_idea_toolbar.setNavigationOnClickListener {
+            Toast.makeText(this, "已返回", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+//        binding.toolbarLayout.title = title
+
+        // 悬浮按钮
         binding.fab.setOnClickListener {
             intent = Intent(this, IdeaItemCreationActivity::class.java)
             ideaItemRequestLauncher.launch(intent)
         }
-        bindView()
-        initBarView()
-//        setDatabaseTestItem(false)    // if set true, default items will be inserted into database for testing.
-        bindDatabase()
-        initRecyclerView()
-//        clearDatabaseItem()
-    }
-
-    private fun bindView() {
-        floatingCreationButton = findViewById(R.id.fab)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -76,42 +84,14 @@ class IdeaActivity : AppCompatActivity() {
     private fun initBarView() {
         val tagFormatter = SimpleDateFormat("yyyy-MM-dd")
         val formattedDate = tagFormatter.format(Date())
-//        Log.d("IdeaActivity", "formattedDate: $formattedDate, DateStr: $dateStr")
 
         if (!formattedDate.equals(dateStr)) {
-//            Log.d("IdeaActivity", "hide button.")
             floatingCreationButton.visibility = com.google.android.material.floatingactionbutton.FloatingActionButton.INVISIBLE
         }
     }
 
     private fun getParameterBundle(): Bundle? {
         return intent.extras
-    }
-
-    private fun setEnvironmentParameter() {
-//        val bundle = getParameterBundle()
-//        val year = bundle!!.get("year")
-//        val month = bundle.get("month").toString().toInt()
-//        val day = bundle.get("day").toString().toInt()
-//        dateStr = "$year-"
-//        dateStr += if (month < 10) {
-//            "0$month-"
-//        } else {
-//            "$month-"
-//        }
-//        dateStr += if (day < 10) {
-//            "0$day"
-//        } else {
-//            "$day"
-//        }
-    }
-
-    private fun inflateTestDateBundle() {
-//        if (bundleTestItem) {
-//            intent.putExtra("year", "2022")
-//            intent.putExtra("month", "05")
-//            intent.putExtra("day", "14")
-//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -133,26 +113,9 @@ class IdeaActivity : AppCompatActivity() {
 
     private fun bindDatabase() {
         db = dbHelper.writableDatabase
-        if (databaseTestItem) {
-            initTestIdeaItem()
-        }
     }
 
-    private fun setBundleTestItem(b: Boolean) {
-        bundleTestItem = b
-    }
 
-    private fun setDatabaseTestItem(b: Boolean) {
-        databaseTestItem = b
-    }
-
-    private fun initTestIdeaItem() {
-//        val testIdeaItem = IdeaItem(dateStr, "Keep simple, keep stupid.", "", "", "$dateStr-22-43-24")
-//        val ideaList = dbHelper.getIdeaItemListByDate(dateStr)
-//        if (ideaList.isEmpty()) {
-//            dbHelper.insertIdeaItem(db, testIdeaItem)
-//        }
-    }
 
     private fun clearDatabaseItem() {
         dbHelper.deleteAllItem(db)
@@ -162,7 +125,7 @@ class IdeaActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.idea_recycler_view)
         val layoutManager = LinearLayoutManager(this)
         rv.layoutManager = layoutManager
-        val adapter = IdeaViewAdapter()
+        val adapter = IdeaViewAdapter(this)
         Log.d("IdeaActivity", "Query Date: $dateStr")
         adapter.setIdeaList(dbHelper.getIdeaItemListByDate(dateStr))
         rvAdapter = adapter

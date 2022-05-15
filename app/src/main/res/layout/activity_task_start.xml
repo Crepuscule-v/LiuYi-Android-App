@@ -156,7 +156,7 @@
                         android:textSize="30sp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:padding="20dp"
+                        android:padding="15dp"
                         android:textColor="@android:color/darker_gray"
                         android:format="%s"/>
 
@@ -208,10 +208,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp">
-                    <!-- 插一个闹钟图片 或者 小人加油的图片-->
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
                         android:background="@drawable/work_harder"
                         android:layout_gravity="center"/>
 
@@ -220,6 +221,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="-10dp"
                         android:gravity="center"
                         android:text="total duration"
                         android:textSize="15sp" />

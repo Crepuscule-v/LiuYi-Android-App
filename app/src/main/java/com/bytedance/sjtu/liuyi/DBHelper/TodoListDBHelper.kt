@@ -1,4 +1,4 @@
-package com.bytedance.sjtu.liuyi
+package com.bytedance.sjtu.liuyi.DBHelper
 
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper

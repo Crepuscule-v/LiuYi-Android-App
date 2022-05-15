@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
@@ -23,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bytedance.sjtu.liuyi.Activity.*
 import com.bytedance.sjtu.liuyi.Adapter.TaskThumbnailAdapter
+import com.bytedance.sjtu.liuyi.DBHelper.IdeaItemDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.DataClass.TaskElement
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -48,13 +48,11 @@ class MainActivity : AppCompatActivity(), OnCalendarSelectListener, OnCalendarLo
     var taskList = mutableListOf<TaskElement>()
     var isPause = false
     var ideabutton: Button?=null
-
     var createIdeaItemButton: ImageButton?=null
     var viewIdeaItemListViewButton : ImageButton? = null
     var createbutton: ImageButton?=null
     var clear_all_task_of_day_btn : ImageButton?=null
     private var mYear = 0
-//        var mCalendarLayout: CalendarLayout? = null
 
     private lateinit var todolist_db : SQLiteDatabase
     private val todolist_dbHelper : TodoListDBHelper = TodoListDBHelper(this, TODOLIST_DB_NAME)
@@ -138,28 +136,16 @@ class MainActivity : AppCompatActivity(), OnCalendarSelectListener, OnCalendarLo
 
         // 查看详情按钮
         allTaskAtOneDayBtn.setOnClickListener{
-//            if (calenderYear == null) {
-//                calenderYear = mCalendarView!!.curYear.toString()
-//            }
-//            if (calenderMonth == null) {
-//                calenderMonth = mCalendarView!!.curMonth.toString()
-//            }
-//            if (calenderDay == null) {
-//                calenderDay = mCalendarView!!.curDay.toString()
-//            }
             val dateFormatterForDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val new_task_tag = dateFormatterForDate.format(LocalDateTime.now())
             val intent = Intent(this, AllTaskActivity::class.java)
             intent.putExtra("task_date",new_task_tag)
-//            intent.putExtra("year",calenderYear)
-//            intent.putExtra("month",calenderMonth)
-//            intent.putExtra("day",calenderDay)
             startActivity(intent)
         }
 
         createbutton!!.setOnClickListener{
             startActivity(Intent().apply {
-                setClass(this@MainActivity, CreateReport::class.java)
+                setClass(this@MainActivity, CreateReportActivity::class.java)
                 putExtra("year",caly)
                 putExtra("month",calm)
                 putExtra("day",cald)
@@ -168,22 +154,10 @@ class MainActivity : AppCompatActivity(), OnCalendarSelectListener, OnCalendarLo
 
 
         viewIdeaItemListViewButton!!.setOnClickListener {
-//            if (calenderYear == null) {
-//                calenderYear = mCalendarView!!.curYear.toString()
-//            }
-//            if (calenderMonth == null) {
-//                calenderMonth = mCalendarView!!.curMonth.toString()
-//            }
-//            if (calenderDay == null) {
-//                calenderDay = mCalendarView!!.curDay.toString()
-//            }
             val dateFormatterForDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val new_task_date = dateFormatterForDate.format(LocalDateTime.now())
             startActivity(Intent().apply {
                 setClass(this@MainActivity, IdeaActivity::class.java)
-//                putExtra("year",calenderYear)
-//                putExtra("month",calenderMonth)
-//                putExtra("day",calenderDay)
                 putExtra("task_date", new_task_date)
             })
         }

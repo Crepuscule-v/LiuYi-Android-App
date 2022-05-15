@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import com.bytedance.sjtu.liuyi.TodoListDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.R
 /*
  * 长按进入未完成任务的编辑页面 （已完成任务不可编辑）
@@ -71,7 +71,7 @@ class TodoTaskEditActivity : AppCompatActivity() {
                 task_title_edittext = findViewById<EditText>(R.id.task_title_edit)
                 task_detail_edittext = findViewById<EditText>(R.id.task_detail_edit)
 
-                val dateFormatterForTag = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss")
+                val dateFormatterForTag = DateTimeFormatter.ofPattern(TAG_PATTERN)
                 val dateFormatterForDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 val new_task_tag = dateFormatterForTag.format(LocalDateTime.now())
                 val task_date = dateFormatterForDate.format(LocalDateTime.now())
@@ -106,7 +106,6 @@ class TodoTaskEditActivity : AppCompatActivity() {
 
     private fun showContent(task_tag: String): Boolean {
         val myMap = dbHelper.queryTaskInfo(task_tag)
-        Log.d("########### pos_10", myMap.toString())
         if (myMap["task_exist"] == "True") {
             task_title_edittext = findViewById<EditText>(R.id.task_title_edit)
             task_title_edittext.setText(myMap["task_title"])

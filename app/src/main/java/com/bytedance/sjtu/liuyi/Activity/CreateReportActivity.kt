@@ -1,18 +1,17 @@
-package com.bytedance.sjtu.liuyi
+package com.bytedance.sjtu.liuyi.Activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import com.bytedance.sjtu.liuyi.Activity.TODOLIST_DB_NAME
-import com.bytedance.sjtu.liuyi.Activity.TodoTaskEditActivity
+import com.bytedance.sjtu.liuyi.DBHelper.IdeaItemDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.DataClass.IdeaItem
 import com.bytedance.sjtu.liuyi.DataClass.TaskElement
-import org.w3c.dom.Text
+import com.bytedance.sjtu.liuyi.R
 
-class CreateReport : AppCompatActivity() {
+class CreateReportActivity : AppCompatActivity() {
     var curm: Int?=null
     var cury: Int?=null
     var curd: Int ?=null
@@ -42,7 +41,7 @@ class CreateReport : AppCompatActivity() {
 
     var mretBut: Button?=null
     private val todolist_dbHelper : TodoListDBHelper = TodoListDBHelper(this, TODOLIST_DB_NAME)
-    private val idealist_dbHelper : IdeaItemDBHelper = IdeaItemDBHelper(this,"idea.db",1)
+    private val idealist_dbHelper : IdeaItemDBHelper = IdeaItemDBHelper(this, IDEA_DB_NAME,1)
 
     private var task_list=mutableListOf<TaskElement>()
     private var idea_list=mutableListOf<IdeaItem>()

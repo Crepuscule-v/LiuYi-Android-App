@@ -16,11 +16,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.Comparator
 import android.content.Intent
-import android.util.Log
 import android.widget.ImageButton
 import com.bytedance.sjtu.liuyi.Activity.*
-import com.bytedance.sjtu.liuyi.TodoListDBHelper
-import org.w3c.dom.Text
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 
 /**
  * List: 有序接口, 只能读取, 不能更改元素;
@@ -97,7 +95,7 @@ class TaskThumbnailAdapter(activity: MainActivity) : RecyclerView.Adapter<TaskTh
     val myComparator : Comparator<TaskElement> = Comparator { task_1, task_2 ->
         var result : Int
         if (task_1.task_status == task_2.task_status) {
-            val dateformatter : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd-hh-mm-ss")
+            val dateformatter : SimpleDateFormat = SimpleDateFormat(TAG_PATTERN)
             val date_1 : Date = dateformatter.parse(task_1.task_tag)
             val date_2 : Date = dateformatter.parse(task_2.task_tag)
             if (date_1.before(date_2)) result = -1
@@ -114,7 +112,6 @@ class TaskThumbnailAdapter(activity: MainActivity) : RecyclerView.Adapter<TaskTh
         taskList.clear()
         taskList.addAll(myList)
         taskList.sortWith(myComparator)
-        Log.d("############", taskList.toString())
         notifyDataSetChanged()                          // 当数据发生变化时，更新 view
     }
 

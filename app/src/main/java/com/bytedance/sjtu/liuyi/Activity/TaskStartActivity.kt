@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.widget.*
 import androidx.annotation.RequiresApi
-import com.bytedance.sjtu.liuyi.TodoListDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.R
 
 /*
@@ -42,6 +42,9 @@ class TaskStartActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        task_clock.stop()
+        clock_btn.isChecked = false     // 退出前台等动作，计时停止
+        task_clock.keepScreenOn = false
         if (base_time > 0) {
             val current_time = SystemClock.elapsedRealtime()
             val tmpDuration = current_time - base_time
@@ -59,10 +62,12 @@ class TaskStartActivity : AppCompatActivity() {
             if (isChecked) {
                 base_time = SystemClock.elapsedRealtime()
                 task_clock.setBase(-1 * total_cur_duration + SystemClock.elapsedRealtime())         // 接着上次的计时开始
+                task_clock.keepScreenOn = true                                                      // 计时开始则保持屏幕常亮
                 task_clock.start()
                 Toast.makeText(this, "计时开始", Toast.LENGTH_SHORT).show()
             } else {
                 task_clock.stop()
+                task_clock.keepScreenOn = false
                 val current_time = SystemClock.elapsedRealtime()
                 val tmpDuration = current_time - base_time
                 total_cur_duration += tmpDuration
@@ -73,6 +78,7 @@ class TaskStartActivity : AppCompatActivity() {
 
         clock_reset_btn.setOnClickListener {
             clock_btn.isChecked = false
+            task_clock.keepScreenOn = false
             task_clock.stop()
             if (base_time > 0) {
                 val current_time = SystemClock.elapsedRealtime()

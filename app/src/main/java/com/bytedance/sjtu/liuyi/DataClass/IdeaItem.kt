@@ -5,5 +5,5 @@ data class IdeaItem(
     val text: String,
     val img: String,
     val video: String,
-    val tag: String
+    val tag: String         // Format : TAG_PATTERN
 )

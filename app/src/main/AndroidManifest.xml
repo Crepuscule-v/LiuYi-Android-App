@@ -29,13 +29,14 @@
             android:theme="@style/Theme.LiuYi.NoActionBar" />
         <activity
             android:name=".Activity.DoneTaskShowActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.LiuYi.NoActionBar"/>
         <activity
             android:name=".Activity.AllTaskActivity"
             android:exported="false"
             android:theme="@style/Theme.LiuYi.NoActionBar"/>
         <activity
-            android:name=".CreateReport"
+            android:name=".Activity.CreateReportActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.IdeaItemCreationActivity"

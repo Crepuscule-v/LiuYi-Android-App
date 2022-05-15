@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bytedance.sjtu.liuyi.Activity.AllTaskActivity
+import com.bytedance.sjtu.liuyi.Activity.TAG_PATTERN
 import com.bytedance.sjtu.liuyi.DataClass.TaskElement
 import com.bytedance.sjtu.liuyi.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,7 +27,7 @@ class AllTaskAdapter (activity : AllTaskActivity) : RecyclerView.Adapter<AllTask
     val myComparator : Comparator<TaskElement> = Comparator { task_1, task_2 ->
         var result : Int
         if (task_1.task_status == task_2.task_status) {
-            val dateformatter : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd-hh-mm-ss")
+            val dateformatter : SimpleDateFormat = SimpleDateFormat(TAG_PATTERN)
             val date_1 : Date = dateformatter.parse(task_1.task_tag)
             val date_2 : Date = dateformatter.parse(task_2.task_tag)
             if (date_1.before(date_2)) result = -1

@@ -19,7 +19,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="任务列表"
+            app:title=""
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="30dp"
@@ -53,19 +53,22 @@
         android:id="@+id/all_task_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_marginEnd="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_ideapage_plus"
+        app:backgroundTint="@color/white"
+        android:layout_marginRight="@dimen/fab_margin"
         android:id="@+id/fab_idea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:src="@drawable/idea_btn_in_all_task_page"
-        android:backgroundTint="@android:color/white"
         app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right" />
+        app:layout_anchorGravity="bottom|end" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

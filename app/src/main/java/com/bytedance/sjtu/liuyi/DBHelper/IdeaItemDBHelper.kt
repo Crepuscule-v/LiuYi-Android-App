@@ -1,4 +1,4 @@
-package com.bytedance.sjtu.liuyi
+package com.bytedance.sjtu.liuyi.DBHelper
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.bytedance.sjtu.liuyi.DataClass.IdeaItem
 
-class IdeaItemDBHelper (private val context: Context, fileName: String, version: Int): SQLiteOpenHelper(context, fileName, null, version) {
+class IdeaItemDBHelper (private val context: Context, fileName: String, version: Int = 1): SQLiteOpenHelper(context, fileName, null, version) {
     private val createIdeaTable = "create table idea(" +
             "id integer primary key autoincrement," +
             "idea_date text," +

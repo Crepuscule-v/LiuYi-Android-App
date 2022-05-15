@@ -13,12 +13,14 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bytedance.sjtu.liuyi.DataClass.IdeaItem
-import com.bytedance.sjtu.liuyi.IdeaItemDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.IdeaItemDBHelper
 import com.bytedance.sjtu.liuyi.R
 import java.io.OutputStream
 import java.util.*
@@ -26,10 +28,11 @@ import java.util.*
 
 class IdeaItemCreationActivity : AppCompatActivity() {
     private lateinit var ivIdeaItemCreation: ImageView
-    private val dbHelper = IdeaItemDBHelper(this, "idea.db", 1)
+    private val dbHelper = IdeaItemDBHelper(this, IDEA_DB_NAME, 1)
     private var db : SQLiteDatabase? = null
     private val ideaItemCreationImageURIPathList : MutableList<String> = arrayListOf()
     private var ideaItemCreationImageURI : Uri? = null
+    private lateinit var ideaCreateBar : androidx.appcompat.widget.Toolbar
     private val systemPhotoRequestLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         when (it.resultCode) {
             RESULT_CANCELED -> {
@@ -60,6 +63,7 @@ class IdeaItemCreationActivity : AppCompatActivity() {
 
     private fun bindView() {
         ivIdeaItemCreation = findViewById(R.id.iv_idea_item_creation)
+        ideaCreateBar = findViewById(R.id.idea_create_page_bar)
     }
 
     private fun bindDatabase() {
@@ -67,24 +71,42 @@ class IdeaItemCreationActivity : AppCompatActivity() {
     }
 
     private fun setViewOnClickListener() {
-        val backView = findViewById<LinearLayout>(R.id.ll_back_view)
-        backView.setOnClickListener {
-            setResult(IdeaItemCreationFailCode)
-            finish()
-        }
-        val creationView = findViewById<Button>(R.id.btn_creation)
-        creationView.setOnClickListener {
-            val ideaItemCreated = createIdeaItem()
-            if (ideaItemCreated) {
-                setResult(IdeaItemCreationSuccessCode)
-                finish()
-            }
-        }
         ivIdeaItemCreation.setOnClickListener {
             getAllPhoto()
         }
+
+        ideaCreateBar.setTitle("新想法")
+        ideaCreateBar.setNavigationIcon(R.drawable.to_left_dark)
+        setSupportActionBar(ideaCreateBar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        ideaCreateBar.setNavigationOnClickListener {
+            Toast.makeText(this, "已舍弃", Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.getItemId()) {
+            R.id.save_idea -> {
+                val ideaItemCreated = createIdeaItem()
+                if (ideaItemCreated) {
+                    setResult(IdeaItemCreationSuccessCode)
+                    finish()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // 添加保存按钮
+        ideaCreateBar.inflateMenu(R.menu.idea_edit_menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    @SuppressLint("LongLogTag")
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun createIdeaItem() : Boolean {
         val ideaItem = packIdeaItemData()
         Log.d("IdeaItemCreationActivity", "dataItem : $ideaItem")
@@ -93,7 +115,7 @@ class IdeaItemCreationActivity : AppCompatActivity() {
             return true
         }
         else {
-            Toast.makeText(this, "分享一些感悟吧", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "记录一些想法吧", Toast.LENGTH_SHORT).show()
         }
         return false
     }
@@ -161,7 +183,7 @@ class IdeaItemCreationActivity : AppCompatActivity() {
     private fun packIdeaItemData() : IdeaItem {
         val tv = findViewById<TextView>(R.id.et_idea_item_creation)
         val text = tv.text.toString()
-        val tagFormatter = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")
+        val tagFormatter = SimpleDateFormat(TAG_PATTERN)
         val formattedTag = tagFormatter.format(Date())
         val formattedDate = formattedTag.substring(0, 10)
         var imgURI = ""

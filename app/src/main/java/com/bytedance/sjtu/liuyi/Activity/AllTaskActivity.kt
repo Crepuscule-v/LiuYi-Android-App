@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bytedance.sjtu.liuyi.Adapter.AllTaskAdapter
-import com.bytedance.sjtu.liuyi.TodoListDBHelper
+import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.DataClass.TaskElement
 import com.bytedance.sjtu.liuyi.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,14 +25,11 @@ class AllTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_all_task)
         val date = intent.extras?.getString("task_date").toString()
-//        val year = intent.extras?.getString("year").toString()
-//        val month = intent.extras?.getString("month").toString()
-//        val day = intent.extras?.getString("day").toString()
         db = dbHelper.openDB()
 
         // 添加顶部返回按钮
         all_task_toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.all_task_toolbar)
-        all_task_toolbar.setTitle("任务列表")
+        all_task_toolbar.setTitle("三味书屋")
         all_task_toolbar.setNavigationIcon(R.drawable.to_left)
         setSupportActionBar(all_task_toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
