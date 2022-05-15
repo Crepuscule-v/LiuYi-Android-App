@@ -1,4 +1,4 @@
-## LiuYi App
+## LiuYi  App  DevLog
 
 - [ ] 挑选每个页面的背景图 | 高度要统一
 - [ ] 重设计主页 UI
@@ -10,7 +10,9 @@
 
 
 
+### ~ - 5.15
 
+#### Problems & Solving
 
 - `fitsSystemWindows`  属性可用于实现沉浸式状态栏，但是使用不当会出现意向不到的结果
 
