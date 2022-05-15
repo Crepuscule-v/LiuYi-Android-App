@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.bytedance.sjtu.liuyi.MainActivity"
+    tools:ignore="RtlHardcoded,HardcodedText,RtlSymmetry,SmallSp">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="12dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingTop="12dp"
+        tools:ignore="RelativeOverlap">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/liuyi_logo"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_tool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_weight="1"
+            android:layout_marginVertical="10dp">
+<!--            android:layout_toLeftOf="@+id/app_title">-->
+            <TextView
+                android:id="@+id/tv_month_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/tv_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:layout_toRightOf="@+id/tv_month_day"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.haibin.calendarview.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_margin="10dp"
+        app:current_day_lunar_text_color="#ff0000"
+        app:current_day_text_color="#ff0000"
+        app:current_month_lunar_text_color="#CFCFCF"
+        app:current_month_text_color="#333333"
+        app:lunar_text_size="10sp"
+        app:max_year="2050"
+        app:max_year_day="31"
+        app:max_year_month="12"
+        app:min_year="2008"
+        app:min_year_day="1"
+        app:min_year_month="1"
+        app:calendar_height="35dp"
+        app:calendar_padding="10dp"
+        app:month_view="com.bytedance.sjtu.liuyi.custom.SimpleMonthView"
+        app:month_view_show_mode="mode_only_current"
+        app:other_month_lunar_text_color="#e1e1e1"
+        app:other_month_text_color="#e1e1e1"
+        app:scheme_lunar_text_color="#CFCFCF"
+        app:scheme_text="假"
+        app:scheme_text_color="#333"
+        app:scheme_theme_color="#128c4b"
+        app:selected_lunar_text_color="#128c4b"
+        app:selected_text_color="#128c4b"
+        app:selected_theme_color="#80cfcfcf"
+        app:week_background="#fff"
+        app:week_bar_height="46dp"
+        app:week_bar_view="com.bytedance.sjtu.liuyi.custom.CustomWeekBar"
+        app:week_line_background="#00000000"
+        app:week_line_margin="16dp"
+        app:week_start_with="sun"
+        app:week_text_size="10sp"
+        app:week_view="com.bytedance.sjtu.liuyi.custom.SimpleWeekView"
+        app:year_view_background="#f6f6f6"
+        app:year_view_day_text_color="#333333"
+        app:year_view_day_text_size="8sp"
+        app:year_view_month_text_color="#ff0000"
+        app:year_view_month_text_size="20sp"
+        app:year_view_scheme_color="#f17706"
+        app:year_view_week_height="0dp"
+        app:year_view_week_text_color="#666666"
+        app:month_view_auto_select_day="last_select_day_ignore_current"
+        app:year_view_week_text_size="7sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="今日待办"/>
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/idea_btn"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="center"
+                android:id="@+id/idea_btn" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@drawable/new_task_btn"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_gravity="center"
+                android:id="@+id/add_new_task" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:background="@drawable/see_all_task_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_gravity="center"
+                android:id="@+id/all_task_at_one_day_btn" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:layout_width="30dp"
+                android:layout_height="32dp"
+                android:background="@drawable/clear_all_btn"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginVertical="5dp"
+                android:id="@+id/clear_all_task_of_day_btn" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:layout_width="30dp"
+                android:layout_height="37dp"
+                android:background="@drawable/report_btn"
+                android:layout_gravity="center"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginVertical="5dp"
+                android:id="@+id/createreport"
+                android:text="点击生成月度报告"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/task_thumbnail_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

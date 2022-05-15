@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bytedance.sjtu.liuyi">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LiuYi"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        <activity
+            android:name=".Activity.TodoTaskEditActivity"
+            android:label="TodoTaskEditActivity"
+            android:theme="@style/Theme.LiuYi.NoActionBar"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TaskStartActivity"
+            android:exported="false"
+            android:label="@string/title_activity_task_start"
+            android:theme="@style/Theme.LiuYi.NoActionBar" />
+        <activity
+            android:name=".Activity.DoneTaskShowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AllTaskActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LiuYi.NoActionBar"/>
+        <activity
+            android:name=".CreateReport"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.IdeaItemCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.IdeaActivity"
+            android:exported="true"
+            android:label="感悟心得">
+        </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppStartPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.bytedance.sjtu.liuyi.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+
+            </meta-data>
+        </provider>
+
+    </application>
+
+</manifest>
