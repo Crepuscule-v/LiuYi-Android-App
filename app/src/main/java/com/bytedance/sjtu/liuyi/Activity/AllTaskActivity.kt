@@ -2,8 +2,12 @@ package com.bytedance.sjtu.liuyi.Activity
 
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.view.Window
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +25,13 @@ class AllTaskActivity : AppCompatActivity() {
     private val dbHelper : TodoListDBHelper = TodoListDBHelper(this, TODOLIST_DB_NAME)
     private lateinit var fab_idea : FloatingActionButton    // 点击跳转到当日的 idea 页
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_all_task)
         val date = intent.extras?.getString("task_date").toString()
         db = dbHelper.openDB()
+
 
         // 添加顶部返回按钮
         all_task_toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.all_task_toolbar)
@@ -43,9 +49,6 @@ class AllTaskActivity : AppCompatActivity() {
         fab_idea = findViewById<FloatingActionButton>(R.id.fab_idea)
         fab_idea.setOnClickListener {
             var intent = Intent(this, IdeaActivity::class.java)
-//            intent.putExtra("year", year)
-//            intent.putExtra("month", month)
-//            intent.putExtra("day", day)
             intent.putExtra("task_date", date)
             startActivity(intent)
         }

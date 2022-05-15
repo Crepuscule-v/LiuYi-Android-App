@@ -35,7 +35,7 @@
         <entry key="..\:/MyAndroidRepo/CS157 homework/FinalProjectSharedRepo/LiuYi/Final-Proj/app/src/main/res/layout/fragment_second.xml" value="0.2265625" />
         <entry key="..\:/MyAndroidRepo/CS157 homework/FinalProjectSharedRepo/LiuYi/Final-Proj/app/src/main/res/layout/idea_item_view.xml" value="0.24739583333333334" />
         <entry key="..\:/MyAndroidRepo/CS157 homework/FinalProjectSharedRepo/LiuYi/Final-Proj/app/src/main/res/menu/task_edit_menu.xml" value="0.2" />
-        <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_all_task.xml" value="0.29635416666666664" />
+        <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_all_task.xml" value="0.264" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_create_report.xml" value="0.20643363728470113" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_done_task_show.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_idea_item_creation.xml" value="0.176" />
@@ -43,12 +43,13 @@
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_scrolling.xml" value="0.20643363728470113" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_single_task_entry.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_task_start.xml" value="0.176" />
-        <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_todo_task_edit.xml" value="0.23048327137546468" />
+        <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_todo_task_edit.xml" value="0.1" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/activity_tumbnail_recyclerview_entry.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/content_scrolling.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/content_task_start.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/custom_week_bar.xml" value="0.24947916666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/fragment_first.xml" value="0.24947916666666667" />
+        <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/fragment_second.xml" value="0.10185185185185185" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/layout/idea_item_view.xml" value="0.264" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/menu/idea_edit_menu.xml" value="0.4244791666666667" />
         <entry key="..\:/MyAndroidRepo/LiuYi App/app/src/main/res/menu/menu_scrolling.xml" value="0.29635416666666664" />

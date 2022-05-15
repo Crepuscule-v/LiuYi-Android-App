@@ -9,7 +9,7 @@
     tools:context="com.bytedance.sjtu.liuyi.Activity.TodoTaskEditActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbar_todo_task_edit_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.LiuYi.AppBarOverlay" >
