@@ -141,7 +141,7 @@ class TaskStartActivity : AppCompatActivity() {
             task_detail_textview.setText(myMap["task_detail"])
             latest_duration = myMap["task_duration"]?.toLong()                      // 获取总秒数
             val duration : String = convertSecondsToFormattedTime(latest_duration)
-            task_duration_textview.setText("该任务已专注${duration}")                 // 表示为 xx 时 xx 分 xx 秒
+            task_duration_textview.setText("当前任务已专注${duration}")                 // 表示为 xx 时 xx 分 xx 秒
             return true
         }
         else {

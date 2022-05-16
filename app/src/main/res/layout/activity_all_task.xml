@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.bytedance.sjtu.liuyi.Activity.AllTaskActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,18 +15,20 @@
         android:theme="@style/Theme.LiuYi.AppBarOverlay" >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/all_task_collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title=""
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleMarginStart="30dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:expandedTitleMarginStart="20dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:collapsedTitleGravity="center"
+            app:expandedTitleMarginBottom="15dp">
 
             <ImageView
-                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/bg_img_height"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:fitsSystemWindows="true"
@@ -41,9 +42,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/Theme.LiuYi.PopupOverlay"
-                app:titleTextColor="@color/white"
-                app:title=""
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:id="@+id/tv_for_title_to_middle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XXXXXXX"
+                    android:textSize="15sp"
+                    android:layout_gravity="right"
+                    android:scrollHorizontally="true"
+                    android:visibility="invisible"  />
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -52,7 +63,7 @@
         android:id="@+id/all_task_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginVertical="@dimen/recyclerview_margin_y"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </androidx.recyclerview.widget.RecyclerView>

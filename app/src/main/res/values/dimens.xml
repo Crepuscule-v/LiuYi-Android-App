@@ -1,3 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="bg_img_height">300dp</dimen>
+    <dimen name="recyclerview_margin_y">15dp</dimen>
+    <dimen name="cardview_elevation">6dp</dimen>
+    <dimen name="cardview_corner_radius">10dp</dimen>
 </resources>

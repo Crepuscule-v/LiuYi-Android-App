@@ -5,16 +5,20 @@ import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.Window
+import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bytedance.sjtu.liuyi.Adapter.AllTaskAdapter
 import com.bytedance.sjtu.liuyi.DBHelper.TodoListDBHelper
 import com.bytedance.sjtu.liuyi.DataClass.TaskElement
 import com.bytedance.sjtu.liuyi.R
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AllTaskActivity : AppCompatActivity() {
@@ -32,13 +36,19 @@ class AllTaskActivity : AppCompatActivity() {
         val date = intent.extras?.getString("task_date").toString()
         db = dbHelper.openDB()
 
-
         // 添加顶部返回按钮
         all_task_toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.all_task_toolbar)
-        all_task_toolbar.setTitle("三味书屋")
-        all_task_toolbar.setNavigationIcon(R.drawable.to_left)
+        all_task_toolbar.setNavigationIcon(R.drawable.rtn_left_icon_black)
         setSupportActionBar(all_task_toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+
+        // 设置标题相关
+        val collapsingToolbarLayout : CollapsingToolbarLayout = findViewById(R.id.all_task_collapsing_toolbar_layout)
+        collapsingToolbarLayout.title = "三味书屋"
+        collapsingToolbarLayout.setExpandedTitleColor(Color.BLACK)
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.BLACK)
+        collapsingToolbarLayout.collapsedTitleGravity = Gravity.CENTER              // 收缩时标题位置
+
         // 设置左上角返回箭头
         all_task_toolbar.setNavigationOnClickListener {
             Toast.makeText(this, "已返回", Toast.LENGTH_SHORT).show()
@@ -79,4 +89,6 @@ class AllTaskActivity : AppCompatActivity() {
         }
         cursor.close()
     }
+
+
 }

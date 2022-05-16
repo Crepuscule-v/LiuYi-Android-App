@@ -34,7 +34,7 @@
         <activity
             android:name=".Activity.AllTaskActivity"
             android:exported="false"
-            android:theme="@style/Theme.LiuYi.NoActionBar"/>
+            android:theme="@style/Theme.LiuYi"/>
         <activity
             android:name=".Activity.CreateReportActivity"
             android:exported="false" />
@@ -46,8 +46,9 @@
             android:exported="true"
             android:label="感悟心得">
         </activity>
+
         <activity android:name=".MainActivity"
-            android:theme="@style/AppStartPage"
+            android:theme="@style/Theme.LiuYi.AppStartPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,7 +65,6 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths">
-
             </meta-data>
         </provider>
 

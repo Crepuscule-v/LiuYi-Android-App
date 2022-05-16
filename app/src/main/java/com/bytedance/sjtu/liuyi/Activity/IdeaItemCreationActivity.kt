@@ -76,7 +76,7 @@ class IdeaItemCreationActivity : AppCompatActivity() {
         }
 
         ideaCreateBar.setTitle("新想法")
-        ideaCreateBar.setNavigationIcon(R.drawable.to_left_dark)
+        ideaCreateBar.setNavigationIcon(R.drawable.rtn_left_icon_black)
         setSupportActionBar(ideaCreateBar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         ideaCreateBar.setNavigationOnClickListener {

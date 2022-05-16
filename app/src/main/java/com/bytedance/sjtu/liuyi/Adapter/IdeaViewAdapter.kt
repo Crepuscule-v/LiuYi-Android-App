@@ -37,12 +37,14 @@ class IdeaViewAdapter (activity : IdeaActivity): RecyclerView.Adapter<IdeaViewAd
                 ideaItemTextView.text = ideaItem.text
                 ideaItemTextView.visibility = View.VISIBLE
             }
+
             ideaItemTimeView.text = ideaItem.tag                // 设置为 yyyy-MM-dd-hh-mm-ss
             if (ideaItem.img.isBlank()) {
                 ideaItemImageView.visibility = View.GONE
             }
             else {
                 ideaItemImageView.setImageURI(Uri.parse(ideaItem.img))
+                ideaItemImageView.alpha=1.0f
                 ideaItemImageView.visibility = View.VISIBLE
             }
         }
@@ -86,7 +88,6 @@ class IdeaViewAdapter (activity : IdeaActivity): RecyclerView.Adapter<IdeaViewAd
             db.delete("idea", "idea_tag = ?", arrayOf(ideaTimeView.text.toString()))
             setIdeaList(dbHelper.getIdeaItemListByDate(idea_activity.dateStr))
         }
-
         return ideaViewHolder
     }
 

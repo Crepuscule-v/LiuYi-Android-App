@@ -16,13 +16,13 @@
         android:id="@+id/delete_idea_entry_btn"
         android:layout_width="27dp"
         android:layout_height="27dp"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:background="@drawable/delete_idea_btn"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="7dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="7dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,15 +40,16 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"
-            android:text="idea">
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp">
         </TextView>
 
         <ImageView
             android:id="@+id/iv_idea_item_image"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" >
         </ImageView>
@@ -58,13 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:gravity="right"
+            android:gravity="end"
             android:textStyle="bold"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="8dp"
-            android:textSize="16sp"
-            android:text="date"
-            android:textColor="#A9A9A9">
+            android:textSize="12sp" >
         </TextView>
     </LinearLayout>
 

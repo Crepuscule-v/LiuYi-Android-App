@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), OnCalendarSelectListener, OnCalendarLo
     private var calenderYear : String? = null
     private var calenderMonth : String? = null
     private var calenderDay : String? = null
+
     private lateinit var allTaskAtOneDayBtn: ImageButton
     private lateinit var addNewTaskBtn : ImageButton
     private lateinit var taskThumbnailAdapter: TaskThumbnailAdapter
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity(), OnCalendarSelectListener, OnCalendarLo
                 Timer().schedule(object:TimerTask(){
                     override fun run() {
                     }
-                }, Date(), 2000)
+                }, Date(), 2500)
                 return true
             }
         })
